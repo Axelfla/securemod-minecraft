@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.securemod.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [],
+  "client": [
+    "MixinClientPacketListener",
+    "MixinMultiplayerScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
