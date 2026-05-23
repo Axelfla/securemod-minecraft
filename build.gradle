@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.gradle.userdev' version '7.0.145'
+}
+
+version = '1.0.0'
+group = 'com.securemod'
+
+base {
+    archivesName = 'securemod'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+dependencies {
+    implementation "net.neoforged:neoforge:21.1.230"
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+        minecraft_version      : '1.21.1',
+        minecraft_version_range: '[1.21.1,1.22)',
+        neo_version            : '21.1.230',
+        neo_version_range      : '[21.1,)',
+        loader_version_range   : '[4,)',
+        mod_id                 : 'securemod',
+        mod_name               : 'SecureMod',
+        mod_version            : project.version,
+        mod_authors            : 'SecureModDev',
+        mod_description        : 'Protocole de communication sécurisé RSA+AES pour Minecraft'
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties
+    }
+}
